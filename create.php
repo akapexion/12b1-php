@@ -1,18 +1,17 @@
 <?php
-    include("./config/db_connection.php");
+   include("config/db.php");
 
-    if(isset($_POST['save'])){
-        $name = $_POST['nameField'];
-        $email = $_POST['emailField'];
+if(isset($_POST['saveBtn'])){
+    extract($_POST);
 
-        $insert_query = "INSERT INTO users(user_name, user_email) VALUES('$name', '$email')";
+    $insert_query = "INSERT INTO users(user_name, user_email) VALUES('$nameField', '$emailField')";
 
-        $execute = mysqli_query($connection, $insert_query); 
+    $execute = mysqli_query($connection, $insert_query);
 
-        echo "<script>
-            alert('User Added Successfully');
-        </script>";
-    }
+    echo "<script>
+        alert('User added successfully')
+    </script>";
+}
 
 
 ?>
@@ -22,15 +21,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CREATE</title>
+    <title>Create</title>
 </head>
 <body>
     
-    <form method="POST">
+    <form method="post">
         <input type="text" name="nameField">
-        <input type="email" name="emailField">
-
-        <button name="save">SAVE</button>
+        <input type="text" name="emailField">
+        
+        <button name="saveBtn">SAVE</button>
     </form>
 
 
