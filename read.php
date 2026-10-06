@@ -1,5 +1,19 @@
 <?php
     include("config/db.php");
+
+    if(isset($_GET['deleteuser'])){
+        $delete_query = "DELETE FROM users WHERE user_id = $_GET[deleteuser]";
+
+        $execute = mysqli_query($connection, $delete_query);
+
+        echo "
+            <script>
+                location.assign('read.php');
+            </script>
+        ";
+    }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +46,7 @@
                     <a href="update.php?uid=<?php echo $display['user_id']?>">Edit</a>
                 </button>
                 <button>
-                    <a href="">Delete</a>
+                    <a href="?deleteuser=<?php echo $display['user_id']?>">Delete</a>
                 </button>
             </td>
         </tr>
